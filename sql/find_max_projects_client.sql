@@ -1,0 +1,1 @@
+select distinct c.name, COUNT(p.client_id) as PROJECT_COUNT from client c, project p where c.id = p.client_id group by c.name
