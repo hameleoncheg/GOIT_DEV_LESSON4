@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.stream.Collectors;
 
 public class DatabaseInitService {
-
     public static void main(String[] args) throws SQLException {
 
         String filePath = "sql/init_db.sql";
@@ -18,14 +17,15 @@ public class DatabaseInitService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         Database database = Database.getInstance();
         database.executeUpdate(content);
+        database.close();
     }
+
+
     public static String readFile(String path, Charset encoding) throws IOException {
         String content = Files.lines(Paths.get(path), encoding)
                 .collect(Collectors.joining(System.lineSeparator()));
-
         return content;
     }
 }
